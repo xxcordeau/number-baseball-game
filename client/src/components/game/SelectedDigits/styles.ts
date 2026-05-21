@@ -17,7 +17,7 @@ export const Slot = styled.div<{ $filled: boolean; $color?: string }>`
   height: 68px;
   border-radius: ${p => p.theme.radii.lg};
   background: ${p => (p.$filled ? (p.$color || p.theme.colors.surface) : p.theme.colors.surfaceAlt)};
-  border: ${p => (p.$filled ? '2px' : '1.5px')} solid ${p => (p.$filled ? p.theme.colors.text : p.theme.colors.border)};
+  border: 1.5px solid ${p => (p.$filled ? p.theme.colors.border : p.theme.colors.border)};
   box-shadow: ${p => (p.$filled ? p.theme.shadows.md : 'none')};
   display: flex;
   align-items: center;
