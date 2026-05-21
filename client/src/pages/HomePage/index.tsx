@@ -39,8 +39,9 @@ export default function HomePage() {
   };
 
   const handleJoin = () => {
-    if (!nickname.trim() || !joinCode.trim()) return;
-    joinRoom(joinCode.trim().toUpperCase(), nickname.trim());
+    if (!joinCode.trim()) return;
+    const name = nickname.trim() || '플레이어';
+    joinRoom(joinCode.trim().toUpperCase(), name);
   };
 
   return (
@@ -74,7 +75,7 @@ export default function HomePage() {
             onChange={e => setJoinCode(e.target.value.toUpperCase())}
             maxLength={6}
           />
-          <Button variant="secondary" onClick={handleJoin} disabled={!nickname.trim() || !joinCode.trim()}>
+          <Button variant="secondary" onClick={handleJoin} disabled={!joinCode.trim()}>
             참가
           </Button>
         </JoinRow>
