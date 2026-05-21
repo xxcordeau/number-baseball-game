@@ -18,6 +18,8 @@ interface GameState {
   rematchRequested: boolean;
   opponentSelecting: number[];
   guessAcknowledged: boolean;
+  turnTimedOut: boolean;
+  turnKey: number;
 }
 
 interface GameActions {
@@ -48,6 +50,8 @@ const initialState: GameState = {
   rematchRequested: false,
   opponentSelecting: [],
   guessAcknowledged: true,
+  turnTimedOut: false,
+  turnKey: 0,
 };
 
 const GameContext = createContext<(GameState & GameActions) | null>(null);
@@ -114,7 +118,13 @@ export function GameProvider({ children }: { children: ReactNode }) {
     };
 
     const onMyTurn = () => {
-      setState(prev => ({ ...prev, isMyTurn: true, opponentSelecting: [] }));
+      setState(prev => ({
+        ...prev,
+        isMyTurn: true,
+        opponentSelecting: [],
+        turnTimedOut: false,
+        turnKey: prev.turnKey + 1,
+      }));
     };
 
     const onOpponentTurn = () => {
@@ -150,6 +160,10 @@ export function GameProvider({ children }: { children: ReactNode }) {
       setState(prev => ({ ...prev, opponentSelecting: digits }));
     };
 
+    const onTurnTimeout = (guess: number[]) => {
+      setState(prev => ({ ...prev, turnTimedOut: true }));
+    };
+
     const onRematchRequested = () => {
       setState(prev => ({ ...prev, rematchRequested: true }));
     };
@@ -177,6 +191,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
     socket.on('game:opponent-guessed', onOpponentGuessed);
     socket.on('game:finished', onFinished);
     socket.on('game:opponent-selecting', onOpponentSelecting);
+    socket.on('game:turn-timeout' as any, onTurnTimeout);
     socket.on('game:rematch-requested', onRematchRequested);
     socket.on('game:rematch-start', onRematchStart);
     socket.on('player:disconnected', onDisconnected);
@@ -193,6 +208,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
       socket.off('game:opponent-guessed', onOpponentGuessed);
       socket.off('game:finished', onFinished);
       socket.off('game:opponent-selecting', onOpponentSelecting);
+      socket.off('game:turn-timeout' as any, onTurnTimeout);
       socket.off('game:rematch-requested', onRematchRequested);
       socket.off('game:rematch-start', onRematchStart);
       socket.off('player:disconnected', onDisconnected);

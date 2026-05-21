@@ -6,6 +6,7 @@ import NumberPad from '../../components/game/NumberPad';
 import SelectedDigits from '../../components/game/SelectedDigits';
 import GuessHistory from '../../components/game/GuessHistory';
 import TurnCounter from '../../components/game/TurnCounter';
+import TimerGauge from '../../components/game/TimerGauge';
 import { getMoodFromResult, moodMessages } from '../../utils/mood';
 import { Mood } from '../../types/game';
 import {
@@ -51,6 +52,8 @@ export default function GamePage() {
     emitSelecting,
     opponentSelecting,
     guessAcknowledged,
+    turnTimedOut,
+    turnKey,
     error,
   } = useGame();
 
@@ -163,11 +166,14 @@ export default function GamePage() {
           )}
 
           {isMyTurn ? (
-            <OpponentBar $active>
-              <BlobCharacter mood="excited" size={32} animate={false} />
-              <OpponentBarText $active>내 차례!</OpponentBarText>
-              <PulseIcon style={{ background: '#FFD93D' }} />
-            </OpponentBar>
+            <>
+              <OpponentBar $active>
+                <BlobCharacter mood="excited" size={32} animate={false} />
+                <OpponentBarText $active>내 차례!</OpponentBarText>
+                <PulseIcon style={{ background: '#FFD93D' }} />
+              </OpponentBar>
+              <TimerGauge active={isMyTurn} turnKey={turnKey} timedOut={turnTimedOut} />
+            </>
           ) : (
             <>
               <OpponentBar>

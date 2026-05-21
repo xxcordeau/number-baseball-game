@@ -8,6 +8,7 @@ export class RoomManager {
   private rooms = new Map<string, Room>();
   private playerToRoom = new Map<string, string>();
   private disconnectTimers = new Map<string, NodeJS.Timeout>();
+  private turnTimers = new Map<string, NodeJS.Timeout>();
 
   setDisconnectTimer(socketId: string, timer: NodeJS.Timeout) {
     this.disconnectTimers.set(socketId, timer);
@@ -208,6 +209,46 @@ export class RoomManager {
     }
 
     return 'requested';
+  }
+
+  setTurnTimer(code: string, timer: NodeJS.Timeout) {
+    this.clearTurnTimer(code);
+    this.turnTimers.set(code, timer);
+  }
+
+  clearTurnTimer(code: string) {
+    const timer = this.turnTimers.get(code);
+    if (timer) {
+      clearTimeout(timer);
+      this.turnTimers.delete(code);
+    }
+  }
+
+  generateRandomGuess(code: string, socketId: string): number[] {
+    const room = this.rooms.get(code);
+    if (!room) return [1, 2, 3];
+
+    const playerIndex = room.players.findIndex(p => p.id === socketId);
+    const opponentIndex = playerIndex === 0 ? 1 : 0;
+    const answer = room.players[opponentIndex]?.secretNumber;
+
+    let guess: number[];
+    do {
+      const digits = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+      // Fisher-Yates shuffle
+      for (let i = digits.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [digits[i], digits[j]] = [digits[j], digits[i]];
+      }
+      guess = digits.slice(0, 3);
+    } while (
+      answer &&
+      guess[0] === answer[0] &&
+      guess[1] === answer[1] &&
+      guess[2] === answer[2]
+    );
+
+    return guess;
   }
 
   removePlayer(socketId: string): string | null {

@@ -56,5 +56,6 @@ export interface ServerEvents {
   'game:rematch-requested': () => void;
   'game:rematch-start': () => void;
   'game:opponent-selecting': (digits: number[]) => void;
+  'game:turn-timeout': (guess: number[]) => void;
   'player:disconnected': () => void;
 }
