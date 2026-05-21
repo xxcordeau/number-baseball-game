@@ -14,6 +14,7 @@ export function registerSocketHandlers(
       const code = roomManager.createRoom(socket.id, nickname);
       socket.join(code);
       socket.emit('room:created', code);
+      console.log(`[room:create] ${socket.id} created room ${code} as "${nickname}"`);
     });
 
     socket.on('room:join', (code: string, nickname: string) => {
@@ -21,9 +22,11 @@ export function registerSocketHandlers(
       const room = roomManager.joinRoom(upperCode, socket.id, nickname);
 
       if (!room) {
+        console.log(`[room:join] FAILED ${socket.id} tried to join ${upperCode}`);
         socket.emit('room:error', '방을 찾을 수 없거나 이미 가득 찼습니다.');
         return;
       }
+      console.log(`[room:join] ${socket.id} joined room ${upperCode} as "${nickname}"`);
 
       socket.join(upperCode);
       socket.emit('room:joined', sanitizeRoom(room, socket.id));
@@ -135,13 +138,22 @@ export function registerSocketHandlers(
     socket.on('disconnect', () => {
       console.log(`Disconnected: ${socket.id}`);
       const room = roomManager.getRoomByPlayer(socket.id);
-      if (room) {
-        const opponent = room.players.find(p => p.id !== socket.id);
+      if (!room) return;
+
+      // Give 30s grace period for reconnection
+      const disconnectTimer = setTimeout(() => {
+        const currentRoom = roomManager.getRoomByPlayer(socket.id);
+        if (!currentRoom) return;
+        const opponent = currentRoom.players.find(p => p.id !== socket.id);
         roomManager.removePlayer(socket.id);
         if (opponent) {
           io.to(opponent.id).emit('player:disconnected');
         }
-      }
+        console.log(`Removed ${socket.id} after timeout from room ${currentRoom.code}`);
+      }, 30000);
+
+      // Store timer so reconnect can cancel it
+      roomManager.setDisconnectTimer(socket.id, disconnectTimer);
     });
   });
 }

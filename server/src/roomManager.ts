@@ -7,6 +7,36 @@ const generateCode = customAlphabet('ABCDEFGHJKLMNPQRSTUVWXYZ23456789', 6);
 export class RoomManager {
   private rooms = new Map<string, Room>();
   private playerToRoom = new Map<string, string>();
+  private disconnectTimers = new Map<string, NodeJS.Timeout>();
+
+  setDisconnectTimer(socketId: string, timer: NodeJS.Timeout) {
+    this.disconnectTimers.set(socketId, timer);
+  }
+
+  clearDisconnectTimer(socketId: string) {
+    const timer = this.disconnectTimers.get(socketId);
+    if (timer) {
+      clearTimeout(timer);
+      this.disconnectTimers.delete(socketId);
+    }
+  }
+
+  // Replace old socket ID with new one when player reconnects
+  reconnectPlayer(oldSocketId: string, newSocketId: string): Room | null {
+    this.clearDisconnectTimer(oldSocketId);
+    const code = this.playerToRoom.get(oldSocketId);
+    if (!code) return null;
+    const room = this.rooms.get(code);
+    if (!room) return null;
+
+    const player = room.players.find(p => p.id === oldSocketId);
+    if (!player) return null;
+
+    player.id = newSocketId;
+    this.playerToRoom.delete(oldSocketId);
+    this.playerToRoom.set(newSocketId, code);
+    return room;
+  }
 
   createRoom(hostSocketId: string, nickname: string): string {
     let code: string;
