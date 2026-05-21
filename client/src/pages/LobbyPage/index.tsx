@@ -34,9 +34,23 @@ export default function LobbyPage() {
   }, [phase, opponent, roomCode, navigate]);
 
   const handleCopy = () => {
-    if (roomCode) {
-      navigator.clipboard.writeText(roomCode);
+    if (!roomCode) return;
+    if (navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(roomCode).catch(() => fallbackCopy(roomCode));
+    } else {
+      fallbackCopy(roomCode);
     }
+  };
+
+  const fallbackCopy = (text: string) => {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
   };
 
   return (
