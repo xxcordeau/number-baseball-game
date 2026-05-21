@@ -26,7 +26,7 @@ export const PlayingLayout = styled.div`
   display: flex;
   min-height: 100vh;
   width: 100%;
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 32px 20px;
   gap: 24px;
@@ -41,7 +41,7 @@ export const PlayingLayout = styled.div`
 `;
 
 export const RuleColumn = styled.div`
-  width: 160px;
+  width: 280px;
   flex-shrink: 0;
   padding-top: 8px;
   position: sticky;
