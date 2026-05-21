@@ -10,6 +10,9 @@ import { getMoodFromResult, moodMessages } from '../../utils/mood';
 import { Mood } from '../../types/game';
 import {
   Container,
+  PlayingLayout,
+  GameColumn,
+  HistoryColumn,
   Header,
   OpponentInfo,
   TurnInfo,
@@ -21,7 +24,6 @@ import {
   OpponentBar,
   OpponentBarText,
   PulseIcon,
-  ScrollArea,
   MySecretBanner,
   SecretLabel,
   SecretDigits,
@@ -134,68 +136,70 @@ export default function GamePage() {
   // ── PLAYING phase ──
   if (phase === 'PLAYING') {
     return (
-      <Container>
-        <Header>
-          <OpponentInfo>vs {opponent?.nickname ?? '???'}</OpponentInfo>
-          <TurnInfo>{currentTurn}/{maxTurns}</TurnInfo>
-        </Header>
+      <PlayingLayout>
+        <GameColumn>
+          <Header>
+            <OpponentInfo>vs {opponent?.nickname ?? '???'}</OpponentInfo>
+            <TurnInfo>{currentTurn}/{maxTurns}</TurnInfo>
+          </Header>
 
-        {mySecret && (
-          <MySecretBanner>
-            <SecretLabel>내 비밀번호</SecretLabel>
-            <SecretDigits>{mySecret.join('')}</SecretDigits>
-          </MySecretBanner>
-        )}
+          {mySecret && (
+            <MySecretBanner>
+              <SecretLabel>내 비밀번호</SecretLabel>
+              <SecretDigits>{mySecret.join('')}</SecretDigits>
+            </MySecretBanner>
+          )}
 
-        {isMyTurn ? (
-          <OpponentBar $active>
-            <BlobCharacter mood="excited" size={32} animate={false} />
-            <OpponentBarText $active>내 차례!</OpponentBarText>
-            <PulseIcon style={{ background: '#FFD93D' }} />
-          </OpponentBar>
-        ) : (
-          <>
-            <OpponentBar>
-              <BlobCharacter mood="thinking" size={32} animate={false} />
-              <OpponentBarText>상대방 추측 중...</OpponentBarText>
-              <PulseIcon style={{ background: '#38B6FF' }} />
+          {isMyTurn ? (
+            <OpponentBar $active>
+              <BlobCharacter mood="excited" size={32} animate={false} />
+              <OpponentBarText $active>내 차례!</OpponentBarText>
+              <PulseIcon style={{ background: '#FFD93D' }} />
             </OpponentBar>
-            {opponentSelecting.length > 0 && (
-              <OpponentSelectingBar>
-                <SecretLabel>상대 선택중</SecretLabel>
-                {[0, 1, 2].map(i => (
-                  <OpponentDigit key={i} $filled={i < opponentSelecting.length}>
-                    {i < opponentSelecting.length ? '?' : ''}
-                  </OpponentDigit>
-                ))}
-              </OpponentSelectingBar>
-            )}
-          </>
-        )}
+          ) : (
+            <>
+              <OpponentBar>
+                <BlobCharacter mood="thinking" size={32} animate={false} />
+                <OpponentBarText>상대방 추측 중...</OpponentBarText>
+                <PulseIcon style={{ background: '#38B6FF' }} />
+              </OpponentBar>
+              {opponentSelecting.length > 0 && (
+                <OpponentSelectingBar>
+                  <SecretLabel>상대 선택중</SecretLabel>
+                  {[0, 1, 2].map(i => (
+                    <OpponentDigit key={i} $filled={i < opponentSelecting.length}>
+                      {i < opponentSelecting.length ? '?' : ''}
+                    </OpponentDigit>
+                  ))}
+                </OpponentSelectingBar>
+              )}
+            </>
+          )}
 
-        <BlobSection>
-          <BlobCharacter mood={currentMood} size={80} animate />
-          <MoodMessage>{moodMessages[currentMood]}</MoodMessage>
-        </BlobSection>
+          <BlobSection>
+            <BlobCharacter mood={currentMood} size={80} animate />
+            <MoodMessage>{moodMessages[currentMood]}</MoodMessage>
+          </BlobSection>
 
-        <TurnCounter current={currentTurn} max={maxTurns} />
+          <TurnCounter current={currentTurn} max={maxTurns} />
 
-        {isMyTurn && (
-          <>
-            <SelectedDigits digits={digits} />
-            <NumberPad
-              selected={digits}
-              onSelect={handleSelect}
-              onDelete={handleDelete}
-              onConfirm={handleConfirmGuess}
-            />
-          </>
-        )}
+          {isMyTurn && (
+            <>
+              <SelectedDigits digits={digits} />
+              <NumberPad
+                selected={digits}
+                onSelect={handleSelect}
+                onDelete={handleDelete}
+                onConfirm={handleConfirmGuess}
+              />
+            </>
+          )}
+        </GameColumn>
 
-        <ScrollArea>
+        <HistoryColumn>
           <GuessHistory guesses={myGuesses} />
-        </ScrollArea>
-      </Container>
+        </HistoryColumn>
+      </PlayingLayout>
     );
   }
 

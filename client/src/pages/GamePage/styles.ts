@@ -22,6 +22,55 @@ export const Container = styled.div`
   animation: ${fadeInUp} 0.5s ease-out;
 `;
 
+export const PlayingLayout = styled.div`
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 32px 20px;
+  gap: 24px;
+  animation: ${fadeInUp} 0.5s ease-out;
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+    max-width: 400px;
+    align-items: center;
+    justify-content: center;
+  }
+`;
+
+export const GameColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  max-width: 400px;
+
+  @media (max-width: 700px) {
+    width: 100%;
+  }
+`;
+
+export const HistoryColumn = styled.div`
+  width: 280px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  padding-top: 8px;
+  max-height: 100vh;
+  position: sticky;
+  top: 16px;
+  overflow-y: auto;
+
+  @media (max-width: 700px) {
+    width: 100%;
+    position: static;
+    max-height: none;
+  }
+`;
+
 export const Header = styled.div`
   display: flex;
   justify-content: space-between;
@@ -117,13 +166,6 @@ export const PulseIcon = styled.span`
   border-radius: 50%;
   margin-left: auto;
   animation: ${pulse} 1.5s infinite;
-`;
-
-export const ScrollArea = styled.div`
-  width: 100%;
-  flex: 1;
-  overflow-y: auto;
-  padding-bottom: 20px;
 `;
 
 export const MySecretBanner = styled.div`
