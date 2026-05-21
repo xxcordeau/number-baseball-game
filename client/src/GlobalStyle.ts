@@ -13,7 +13,7 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Nunito', sans-serif;
-    background: #EEEDEA;
+    background: #F0F0F0;
     color: #1A1A1A;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

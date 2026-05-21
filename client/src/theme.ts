@@ -1,12 +1,12 @@
 export const theme = {
   colors: {
-    bg: '#EEEDEA',
+    bg: '#F0F0F0',
     text: '#1A1A1A',
     textSub: '#555555',
     textMuted: '#999999',
     surface: '#FFFFFF',
-    surfaceAlt: '#F5F4F1',
-    border: '#E0DED8',
+    surfaceAlt: '#F5F5F5',
+    border: '#E0E0E0',
     orange: '#FFA830',
     deepOrange: '#FF6633',
     blue: '#1A75FF',
