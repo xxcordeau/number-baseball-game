@@ -26,8 +26,8 @@ export const HistoryTitle = styled.h3`
 export const HistoryItem = styled.div`
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
+  gap: 8px;
+  padding: 10px 12px;
   background: ${p => p.theme.colors.surface};
   border-radius: ${p => p.theme.radii.lg};
   border: 1.5px solid ${p => p.theme.colors.border};
@@ -36,9 +36,9 @@ export const HistoryItem = styled.div`
 `;
 
 export const GuessDigits = styled.span`
-  font-size: 20px;
+  font-size: 18px;
   font-weight: ${p => p.theme.fontWeights.black};
-  letter-spacing: 6px;
+  letter-spacing: 4px;
   color: ${p => p.theme.colors.text};
   white-space: nowrap;
 `;
