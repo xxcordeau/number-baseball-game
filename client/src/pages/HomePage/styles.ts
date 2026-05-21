@@ -57,8 +57,8 @@ export const FormCard = styled.div`
   width: 100%;
   background: ${p => p.theme.colors.surface};
   border-radius: ${p => p.theme.radii.xl};
-  border: 2.5px solid ${p => p.theme.colors.border};
-  border-bottom: 6px solid ${p => p.theme.colors.border};
+  border: 1.5px solid ${p => p.theme.colors.border};
+  box-shadow: ${p => p.theme.shadows.lg};
   padding: 28px 24px;
   animation: ${fadeInUp} 0.7s ease-out 0.15s both;
 `;
@@ -68,16 +68,17 @@ export const InputField = styled.input`
   padding: 14px 18px;
   border-radius: ${p => p.theme.radii.md};
   background: ${p => p.theme.colors.surfaceAlt};
-  border: 2px solid transparent;
+  border: 1.5px solid transparent;
   font-size: 16px;
   font-weight: ${p => p.theme.fontWeights.bold};
   color: ${p => p.theme.colors.text};
-  transition: border-color 0.2s, background 0.2s;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
   text-align: center;
 
   &:focus {
-    border-color: ${p => p.theme.colors.yellow};
+    border-color: ${p => p.theme.colors.blue};
     background: #fff;
+    box-shadow: 0 0 0 3px ${p => p.theme.colors.blue}1A;
   }
 
   &::placeholder {
@@ -96,9 +97,8 @@ export const Divider = styled.div`
   &::before, &::after {
     content: '';
     flex: 1;
-    height: 2px;
-    background: ${p => p.theme.colors.surfaceAlt};
-    border-radius: 1px;
+    height: 1px;
+    background: ${p => p.theme.colors.border};
   }
 
   span {
@@ -133,7 +133,7 @@ export const ErrorMsg = styled.p`
   background: #FFF0F3;
   padding: 10px 20px;
   border-radius: ${p => p.theme.radii.md};
-  border: 2px solid ${p => p.theme.colors.pink}33;
+  border: 1.5px solid ${p => p.theme.colors.pink}33;
 `;
 
 export const Section = styled.div`

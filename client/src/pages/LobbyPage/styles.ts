@@ -43,7 +43,7 @@ export const CodeBox = styled.div`
   background: ${p => p.theme.colors.yellow};
   padding: 18px 28px;
   border-radius: ${p => p.theme.radii.xl};
-  border-bottom: 5px solid rgba(0,0,0,0.1);
+  box-shadow: 0 2px 12px rgba(255,217,61,0.3);
   margin-bottom: 40px;
 `;
 
@@ -55,7 +55,7 @@ export const Code = styled.span`
 `;
 
 export const CopyButton = styled.button`
-  background: rgba(0,0,0,0.1);
+  background: rgba(0,0,0,0.08);
   color: ${p => p.theme.colors.text};
   padding: 8px 16px;
   border-radius: ${p => p.theme.radii.md};
@@ -64,7 +64,7 @@ export const CopyButton = styled.button`
   transition: all 0.2s;
 
   &:hover {
-    background: rgba(0,0,0,0.18);
+    background: rgba(0,0,0,0.15);
   }
   &:active {
     transform: scale(0.95);
@@ -87,11 +87,11 @@ export const PlayerSlot = styled.div<{ $ready?: boolean }>`
   padding: 24px 28px;
   background: ${p => p.theme.colors.surface};
   border-radius: ${p => p.theme.radii.xl};
-  border: 2.5px solid ${p => (p.$ready ? p.theme.colors.green : p.theme.colors.border)};
-  border-bottom: 5px solid ${p => (p.$ready ? p.theme.colors.green : p.theme.colors.border)};
+  border: 1.5px solid ${p => (p.$ready ? p.theme.colors.green : p.theme.colors.border)};
+  box-shadow: ${p => (p.$ready ? `0 2px 12px ${p.theme.colors.green}30` : p.theme.shadows.md)};
   min-width: 150px;
   position: relative;
-  transition: border-color 0.3s;
+  transition: all 0.3s;
 `;
 
 export const SlotName = styled.span`

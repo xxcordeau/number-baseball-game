@@ -30,8 +30,8 @@ export const HistoryItem = styled.div`
   padding: 12px 16px;
   background: ${p => p.theme.colors.surface};
   border-radius: ${p => p.theme.radii.lg};
-  border: 2px solid ${p => p.theme.colors.border};
-  border-bottom: 4px solid ${p => p.theme.colors.border};
+  border: 1.5px solid ${p => p.theme.colors.border};
+  box-shadow: ${p => p.theme.shadows.sm};
   animation: ${slideIn} 0.25s ease-out;
 `;
 
@@ -49,7 +49,7 @@ export const EmptyHint = styled.p`
   color: ${p => p.theme.colors.textMuted};
   text-align: center;
   padding: 32px 16px;
-  border: 2px dashed ${p => p.theme.colors.border};
+  border: 1.5px dashed ${p => p.theme.colors.border};
   border-radius: ${p => p.theme.radii.lg};
 `;
 

@@ -8,7 +8,8 @@ export const CounterRow = styled.div`
   background: ${p => p.theme.colors.surface};
   padding: 10px 16px;
   border-radius: ${p => p.theme.radii.full};
-  border: 2px solid ${p => p.theme.colors.border};
+  border: 1.5px solid ${p => p.theme.colors.border};
+  box-shadow: ${p => p.theme.shadows.sm};
 `;
 
 export const Dot = styled.div<{ $used: boolean }>`
@@ -16,7 +17,7 @@ export const Dot = styled.div<{ $used: boolean }>`
   height: 10px;
   border-radius: 50%;
   background: ${p => (p.$used ? p.theme.colors.text : p.theme.colors.surfaceAlt)};
-  border: 2px solid ${p => (p.$used ? p.theme.colors.text : p.theme.colors.border)};
+  border: 1.5px solid ${p => (p.$used ? p.theme.colors.text : p.theme.colors.border)};
   transition: all 0.3s ease;
 `;
 

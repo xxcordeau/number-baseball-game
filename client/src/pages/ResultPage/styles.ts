@@ -58,8 +58,8 @@ export const SummaryCard = styled.div<{ $highlight?: boolean; $color?: string }>
   padding: 20px;
   background: ${p => p.$highlight ? (p.$color || '#FFF0F3') : p.theme.colors.surface};
   border-radius: ${p => p.theme.radii.xl};
-  border: 2.5px solid ${p => p.$highlight ? p.theme.colors.text : p.theme.colors.border};
-  border-bottom: 5px solid ${p => p.$highlight ? p.theme.colors.text : p.theme.colors.border};
+  border: 1.5px solid ${p => p.$highlight ? p.theme.colors.text : p.theme.colors.border};
+  box-shadow: ${p => p.$highlight ? p.theme.shadows.lg : p.theme.shadows.sm};
   text-align: center;
   animation: ${p => p.$highlight ? shake : 'none'} 0.4s ease-in-out 0.8s;
 `;

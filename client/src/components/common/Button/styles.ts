@@ -6,41 +6,40 @@ const variantStyles = {
   primary: css`
     background: ${p => p.theme.colors.text};
     color: #fff;
-    border-bottom: 4px solid rgba(0,0,0,0.3);
+    box-shadow: 0 2px 8px rgba(27,29,40,0.18);
 
     &:hover {
       transform: translateY(-1px);
-      border-bottom-width: 5px;
+      box-shadow: 0 4px 14px rgba(27,29,40,0.22);
     }
     &:active {
-      transform: translateY(2px);
-      border-bottom-width: 2px;
+      transform: translateY(1px);
+      box-shadow: 0 1px 4px rgba(27,29,40,0.15);
     }
   `,
   secondary: css`
     background: ${p => p.theme.colors.surface};
     color: ${p => p.theme.colors.text};
-    border: 2.5px solid ${p => p.theme.colors.text};
-    border-bottom: 5px solid ${p => p.theme.colors.text};
+    border: 1.5px solid ${p => p.theme.colors.border};
+    box-shadow: ${p => p.theme.shadows.sm};
 
     &:hover {
       transform: translateY(-1px);
-      border-bottom-width: 6px;
+      box-shadow: ${p => p.theme.shadows.md};
+      border-color: ${p => p.theme.colors.textMuted};
     }
     &:active {
-      transform: translateY(2px);
-      border-bottom-width: 3px;
+      transform: translateY(1px);
+      box-shadow: none;
     }
   `,
   ghost: css`
     background: transparent;
     color: ${p => p.theme.colors.textSub};
-    text-decoration: underline;
-    text-decoration-style: wavy;
-    text-underline-offset: 4px;
 
     &:hover {
       color: ${p => p.theme.colors.text};
+      background: ${p => p.theme.colors.surfaceAlt};
     }
   `,
 };
@@ -51,16 +50,16 @@ export const StyledButton = styled.button<{ $variant: Variant; $fullWidth?: bool
   font-size: 16px;
   font-weight: ${p => p.theme.fontWeights.extrabold};
   letter-spacing: -0.2px;
-  transition: all 0.15s ease;
+  transition: all 0.2s ease;
   width: ${p => (p.$fullWidth ? '100%' : 'auto')};
   min-width: fit-content;
   white-space: nowrap;
   ${p => variantStyles[p.$variant]}
 
   &:disabled {
-    opacity: 0.35;
+    opacity: 0.45;
     cursor: not-allowed;
     transform: none !important;
-    border-bottom-width: 4px !important;
+    box-shadow: none !important;
   }
 `;

@@ -80,7 +80,8 @@ export const Header = styled.div`
   background: ${p => p.theme.colors.surface};
   padding: 12px 20px;
   border-radius: ${p => p.theme.radii.xl};
-  border: 2px solid ${p => p.theme.colors.border};
+  border: 1.5px solid ${p => p.theme.colors.border};
+  box-shadow: ${p => p.theme.shadows.sm};
 `;
 
 export const OpponentInfo = styled.span`
@@ -130,7 +131,8 @@ export const MoodMessage = styled.p`
   background: ${p => p.theme.colors.surface};
   padding: 6px 16px;
   border-radius: ${p => p.theme.radii.full};
-  border: 2px solid ${p => p.theme.colors.border};
+  border: 1.5px solid ${p => p.theme.colors.border};
+  box-shadow: ${p => p.theme.shadows.sm};
 `;
 
 export const WaitingOverlay = styled.div`
@@ -147,9 +149,10 @@ export const OpponentBar = styled.div<{ $active?: boolean }>`
   align-items: center;
   gap: 12px;
   padding: 12px 18px;
-  background: ${p => p.$active ? '#FFF8E1' : p.theme.colors.surface};
+  background: ${p => p.$active ? '#FFFBEB' : p.theme.colors.surface};
   border-radius: ${p => p.theme.radii.lg};
-  border: 2px solid ${p => p.$active ? p.theme.colors.yellow : p.theme.colors.border};
+  border: 1.5px solid ${p => p.$active ? '#FBBF24' : p.theme.colors.border};
+  box-shadow: ${p => p.$active ? '0 2px 8px rgba(251,191,36,0.15)' : p.theme.shadows.sm};
   margin-bottom: 16px;
 `;
 
@@ -203,7 +206,7 @@ export const OpponentSelectingBar = styled.div`
   padding: 10px 16px;
   background: #F0F4FF;
   border-radius: ${p => p.theme.radii.lg};
-  border: 2px solid #D6E0F5;
+  border: 1.5px solid #D6E0F5;
   margin-bottom: 12px;
 `;
 
@@ -213,7 +216,7 @@ export const OpponentDigit = styled.span<{ $filled: boolean }>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: ${p => p.$filled ? '#38B6FF' : 'rgba(0,0,0,0.06)'};
+  background: ${p => p.$filled ? '#38B6FF' : 'rgba(0,0,0,0.05)'};
   color: ${p => p.$filled ? '#fff' : 'transparent'};
   font-size: 16px;
   font-weight: ${p => p.theme.fontWeights.black};
@@ -229,7 +232,7 @@ export const RuleHint = styled.div`
   padding: 10px 14px;
   background: ${p => p.theme.colors.surface};
   border-radius: ${p => p.theme.radii.lg};
-  border: 2px dashed ${p => p.theme.colors.border};
+  border: 1.5px dashed ${p => p.theme.colors.border};
   margin-bottom: 16px;
 `;
 

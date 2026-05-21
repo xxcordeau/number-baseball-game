@@ -45,27 +45,27 @@ export const PadKey = styled.button<{ $selected?: boolean; $disabled?: boolean; 
       : p.$disabled
         ? p.theme.colors.textMuted
         : p.theme.colors.text};
-  border: 2.5px solid ${p =>
+  border: 1.5px solid ${p =>
     p.$selected
       ? 'transparent'
       : p.theme.colors.border};
-  border-bottom: ${p =>
+  box-shadow: ${p =>
     p.$selected
-      ? `4px solid rgba(0,0,0,0.2)`
-      : `5px solid ${p.theme.colors.border}`};
+      ? `0 2px 8px ${DIGIT_COLORS[p.$digit]}40`
+      : p.theme.shadows.sm};
   transition: all 0.12s ease;
-  opacity: ${p => (p.$disabled && !p.$selected ? 0.3 : 1)};
+  opacity: ${p => (p.$disabled && !p.$selected ? 0.35 : 1)};
   pointer-events: ${p => (p.$disabled ? 'none' : 'auto')};
   animation: ${p => (p.$selected ? pop : 'none')} 0.2s ease-out;
 
   &:hover {
     transform: translateY(-2px);
-    border-bottom-width: 6px;
+    box-shadow: ${p => p.theme.shadows.md};
   }
 
   &:active {
     transform: translateY(1px);
-    border-bottom-width: 3px;
+    box-shadow: none;
   }
 `;
 

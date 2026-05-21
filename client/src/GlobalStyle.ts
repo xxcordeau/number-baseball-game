@@ -13,10 +13,8 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Nunito', sans-serif;
-    background: #FAFAF8;
-    background-image: radial-gradient(circle, #e0ddd6 1px, transparent 1px);
-    background-size: 24px 24px;
-    color: #222222;
+    background: #F7F8FC;
+    color: #1B1D28;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
