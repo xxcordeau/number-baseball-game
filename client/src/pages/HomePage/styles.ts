@@ -38,12 +38,13 @@ export const Deco = styled.span`
 `;
 
 export const Title = styled.h1`
-  font-size: 36px;
+  font-size: 64px;
   font-weight: ${p => p.theme.fontWeights.black};
   color: ${p => p.theme.colors.text};
-  letter-spacing: -1.5px;
-  line-height: 1.1;
+  letter-spacing: -3px;
+  line-height: 0.95;
   margin-top: 12px;
+  text-align: center;
 `;
 
 export const Subtitle = styled.p`

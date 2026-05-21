@@ -48,8 +48,7 @@ export default function HomePage() {
     <Container>
       <HeroSection>
         <BlobCharacter mood="happy" size={120} animate />
-        <Title>Number Baseball</Title>
-        <Subtitle>친구와 1:1 두뇌 대결!</Subtitle>
+        <Title>Number<br />Baseball</Title>
       </HeroSection>
 
       <FormCard>
