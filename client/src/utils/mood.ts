@@ -11,13 +11,13 @@ export function getMoodFromResult(result: GuessResult): Mood {
 }
 
 export const moodColors: Record<Mood, string> = {
-  excited: '#FF6B8A',
-  happy: '#7ED957',
-  thinking: '#38B6FF',
+  excited: '#FF6633',
+  happy: '#FFA830',
+  thinking: '#1A75FF',
   confused: '#A97BFF',
-  sad: '#FF914D',
-  neutral: '#FFD93D',
-  win: '#FF6B8A',
+  sad: '#33CCFF',
+  neutral: '#FFA830',
+  win: '#FF6633',
 };
 
 export const moodMessages: Record<Mood, string> = {

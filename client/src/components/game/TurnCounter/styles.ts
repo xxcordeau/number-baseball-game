@@ -16,8 +16,8 @@ export const Dot = styled.div<{ $used: boolean }>`
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: ${p => (p.$used ? p.theme.colors.text : p.theme.colors.surfaceAlt)};
-  border: 1.5px solid ${p => (p.$used ? p.theme.colors.text : p.theme.colors.border)};
+  background: ${p => (p.$used ? p.theme.colors.deepOrange : p.theme.colors.surfaceAlt)};
+  border: 1.5px solid ${p => (p.$used ? p.theme.colors.deepOrange : p.theme.colors.border)};
   transition: all 0.3s ease;
 `;
 

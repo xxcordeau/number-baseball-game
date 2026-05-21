@@ -1,10 +1,9 @@
 import styled, { keyframes } from 'styled-components';
 
 const drain = keyframes`
-  0%   { width: 100%; background: #7ED957; }
-  55%  { background: #FFD93D; }
-  80%  { background: #FF914D; }
-  95%  { background: #FF6B8A; }
+  0%   { width: 100%; background: #1A75FF; }
+  50%  { background: #FFA830; }
+  80%  { background: #FF6633; }
   100% { width: 0%; background: #FF4D4D; }
 `;
 

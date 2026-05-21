@@ -76,9 +76,9 @@ export const InputField = styled.input`
   text-align: center;
 
   &:focus {
-    border-color: ${p => p.theme.colors.blue};
+    border-color: ${p => p.theme.colors.orange};
     background: #fff;
-    box-shadow: 0 0 0 3px ${p => p.theme.colors.blue}1A;
+    box-shadow: 0 0 0 3px ${p => p.theme.colors.orange}25;
   }
 
   &::placeholder {
@@ -157,7 +157,7 @@ export const DecoRow = styled.div`
     background: ${p => p.theme.colors.text};
   }
 
-  span:nth-child(2) { background: ${p => p.theme.colors.pink}; }
-  span:nth-child(3) { background: ${p => p.theme.colors.yellow}; }
+  span:nth-child(2) { background: ${p => p.theme.colors.orange}; }
+  span:nth-child(3) { background: ${p => p.theme.colors.deepOrange}; }
   span:nth-child(4) { background: ${p => p.theme.colors.blue}; }
 `;

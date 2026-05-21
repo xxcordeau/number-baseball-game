@@ -4,29 +4,29 @@ type Variant = 'primary' | 'secondary' | 'ghost';
 
 const variantStyles = {
   primary: css`
-    background: ${p => p.theme.colors.text};
+    background: ${p => p.theme.colors.blue};
     color: #fff;
-    box-shadow: 0 2px 8px rgba(27,29,40,0.18);
+    box-shadow: 0 2px 10px ${p => p.theme.colors.blue}40;
 
     &:hover {
       transform: translateY(-1px);
-      box-shadow: 0 4px 14px rgba(27,29,40,0.22);
+      box-shadow: 0 4px 16px ${p => p.theme.colors.blue}50;
     }
     &:active {
       transform: translateY(1px);
-      box-shadow: 0 1px 4px rgba(27,29,40,0.15);
+      box-shadow: 0 1px 4px ${p => p.theme.colors.blue}30;
     }
   `,
   secondary: css`
     background: ${p => p.theme.colors.surface};
     color: ${p => p.theme.colors.text};
-    border: 1.5px solid ${p => p.theme.colors.border};
+    border: 2px solid ${p => p.theme.colors.border};
     box-shadow: ${p => p.theme.shadows.sm};
 
     &:hover {
       transform: translateY(-1px);
-      box-shadow: ${p => p.theme.shadows.md};
-      border-color: ${p => p.theme.colors.textMuted};
+      border-color: ${p => p.theme.colors.orange};
+      box-shadow: 0 2px 10px ${p => p.theme.colors.orange}25;
     }
     &:active {
       transform: translateY(1px);
@@ -57,7 +57,7 @@ export const StyledButton = styled.button<{ $variant: Variant; $fullWidth?: bool
   ${p => variantStyles[p.$variant]}
 
   &:disabled {
-    opacity: 0.45;
+    opacity: 0.4;
     cursor: not-allowed;
     transform: none !important;
     box-shadow: none !important;

@@ -40,10 +40,10 @@ export const CodeBox = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
-  background: ${p => p.theme.colors.yellow};
+  background: ${p => p.theme.colors.orange};
   padding: 18px 28px;
   border-radius: ${p => p.theme.radii.xl};
-  box-shadow: 0 2px 12px rgba(255,217,61,0.3);
+  box-shadow: 0 3px 14px ${p => p.theme.colors.orange}40;
   margin-bottom: 40px;
 `;
 

@@ -202,9 +202,9 @@ export default function GamePage() {
           <TurnCounter current={currentTurn} max={maxTurns} />
 
           <RuleHint>
-            <RuleLine><RuleBadge $color="#FF6B8A">S</RuleBadge> 스트라이크 — 숫자와 자리 모두 맞음</RuleLine>
-            <RuleLine><RuleBadge $color="#38B6FF">B</RuleBadge> 볼 — 숫자는 맞지만 자리가 다름</RuleLine>
-            <RuleLine><RuleBadge $color="#FF914D">OUT</RuleBadge> 아웃 — 맞는 숫자가 하나도 없음</RuleLine>
+            <RuleLine><RuleBadge $color="#FF6633">S</RuleBadge> 스트라이크 — 숫자와 자리 모두 맞음</RuleLine>
+            <RuleLine><RuleBadge $color="#1A75FF">B</RuleBadge> 볼 — 숫자는 맞지만 자리가 다름</RuleLine>
+            <RuleLine><RuleBadge $color="#FFA830">OUT</RuleBadge> 아웃 — 맞는 숫자가 하나도 없음</RuleLine>
           </RuleHint>
 
           {isMyTurn && (

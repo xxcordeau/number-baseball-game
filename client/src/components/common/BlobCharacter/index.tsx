@@ -57,7 +57,7 @@ export default function BlobCharacter({
         {face.extra && (
           <path
             d={face.extra}
-            fill={mood === 'sad' ? '#38B6FF' : `${fillColor}cc`}
+            fill={mood === 'sad' ? '#33CCFF' : `${fillColor}cc`}
             stroke="none"
             opacity={mood === 'sad' ? 0.6 : 0.5}
           />

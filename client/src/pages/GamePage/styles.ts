@@ -94,7 +94,8 @@ export const TurnInfo = styled.span`
   font-size: 14px;
   font-weight: ${p => p.theme.fontWeights.black};
   color: ${p => p.theme.colors.text};
-  background: ${p => p.theme.colors.yellow};
+  background: ${p => p.theme.colors.orange};
+  color: #fff;
   padding: 4px 12px;
   border-radius: ${p => p.theme.radii.full};
 `;
@@ -149,10 +150,10 @@ export const OpponentBar = styled.div<{ $active?: boolean }>`
   align-items: center;
   gap: 12px;
   padding: 12px 18px;
-  background: ${p => p.$active ? '#FFFBEB' : p.theme.colors.surface};
+  background: ${p => p.$active ? '#FFF5E6' : p.theme.colors.surface};
   border-radius: ${p => p.theme.radii.lg};
-  border: 1.5px solid ${p => p.$active ? '#FBBF24' : p.theme.colors.border};
-  box-shadow: ${p => p.$active ? '0 2px 8px rgba(251,191,36,0.15)' : p.theme.shadows.sm};
+  border: 1.5px solid ${p => p.$active ? p.theme.colors.orange : p.theme.colors.border};
+  box-shadow: ${p => p.$active ? `0 2px 10px ${p.theme.colors.orange}25` : p.theme.shadows.sm};
   margin-bottom: 16px;
 `;
 
@@ -216,7 +217,7 @@ export const OpponentDigit = styled.span<{ $filled: boolean }>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: ${p => p.$filled ? '#38B6FF' : 'rgba(0,0,0,0.05)'};
+  background: ${p => p.$filled ? p.theme.colors.blue : 'rgba(0,0,0,0.05)'};
   color: ${p => p.$filled ? '#fff' : 'transparent'};
   font-size: 16px;
   font-weight: ${p => p.theme.fontWeights.black};

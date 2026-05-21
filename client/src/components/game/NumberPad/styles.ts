@@ -8,15 +8,15 @@ const pop = keyframes`
 
 const DIGIT_COLORS = [
   '', // 0 unused
-  '#FF6B8A', // 1 pink
-  '#FF914D', // 2 orange
+  '#FF6633', // 1 deep orange
+  '#FFA830', // 2 orange
   '#FFD93D', // 3 yellow
   '#7ED957', // 4 green
-  '#38B6FF', // 5 blue
-  '#A97BFF', // 6 purple
-  '#FF6B8A', // 7 pink
-  '#38B6FF', // 8 blue
-  '#FFD93D', // 9 yellow
+  '#1A75FF', // 5 blue
+  '#33CCFF', // 6 sky blue
+  '#FF6633', // 7 deep orange
+  '#1A75FF', // 8 blue
+  '#FFA830', // 9 orange
 ];
 
 export { DIGIT_COLORS };

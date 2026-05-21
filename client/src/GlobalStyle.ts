@@ -13,8 +13,8 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Nunito', sans-serif;
-    background: #F7F8FC;
-    color: #1B1D28;
+    background: #EEEDEA;
+    color: #1A1A1A;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -39,7 +39,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   ::selection {
-    background: #FFD93D;
+    background: #FFA830;
     color: #222;
   }
 `;
