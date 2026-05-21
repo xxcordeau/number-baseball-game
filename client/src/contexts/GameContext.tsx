@@ -20,6 +20,7 @@ interface GameState {
   guessAcknowledged: boolean;
   turnTimedOut: boolean;
   turnKey: number;
+  opponentDisconnected: boolean;
 }
 
 interface GameActions {
@@ -52,6 +53,7 @@ const initialState: GameState = {
   guessAcknowledged: true,
   turnTimedOut: false,
   turnKey: 0,
+  opponentDisconnected: false,
 };
 
 const GameContext = createContext<(GameState & GameActions) | null>(null);
@@ -175,8 +177,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
     const onDisconnected = () => {
       setState(prev => ({
         ...prev,
-        error: '상대방이 나갔습니다.',
-        phase: 'FINISHED',
+        opponentDisconnected: true,
       }));
     };
 

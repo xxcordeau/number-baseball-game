@@ -54,6 +54,8 @@ export default function GamePage() {
     guessAcknowledged,
     turnTimedOut,
     turnKey,
+    opponentDisconnected,
+    resetAll,
     error,
   } = useGame();
 
@@ -63,6 +65,13 @@ export default function GamePage() {
   useEffect(() => {
     if (!roomCode) navigate('/');
   }, [roomCode, navigate]);
+
+  useEffect(() => {
+    if (opponentDisconnected) {
+      resetAll();
+      navigate('/');
+    }
+  }, [opponentDisconnected, resetAll, navigate]);
 
   useEffect(() => {
     if (phase === 'FINISHED') {
@@ -201,12 +210,6 @@ export default function GamePage() {
 
           <TurnCounter current={currentTurn} max={maxTurns} />
 
-          <RuleHint>
-            <RuleLine><RuleBadge $color="#FF6633">S</RuleBadge> 스트라이크 — 숫자와 자리 모두 맞음</RuleLine>
-            <RuleLine><RuleBadge $color="#1A75FF">B</RuleBadge> 볼 — 숫자는 맞지만 자리가 다름</RuleLine>
-            <RuleLine><RuleBadge $color="#FFA830">OUT</RuleBadge> 아웃 — 맞는 숫자가 하나도 없음</RuleLine>
-          </RuleHint>
-
           {isMyTurn && (
             <>
               <SelectedDigits digits={digits} />
@@ -222,6 +225,11 @@ export default function GamePage() {
         </GameColumn>
 
         <HistoryColumn>
+          <RuleHint>
+            <RuleLine><RuleBadge $color="#FF6633">S</RuleBadge> 스트라이크 — 숫자와 자리 모두 맞음</RuleLine>
+            <RuleLine><RuleBadge $color="#1A75FF">B</RuleBadge> 볼 — 숫자는 맞지만 자리가 다름</RuleLine>
+            <RuleLine><RuleBadge $color="#FFA830">OUT</RuleBadge> 아웃 — 맞는 숫자가 하나도 없음</RuleLine>
+          </RuleHint>
           <GuessHistory guesses={myGuesses} />
         </HistoryColumn>
       </PlayingLayout>
