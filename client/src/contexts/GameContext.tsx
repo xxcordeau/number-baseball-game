@@ -17,6 +17,7 @@ interface GameState {
   error: string | null;
   rematchRequested: boolean;
   opponentSelecting: number[];
+  guessAcknowledged: boolean;
 }
 
 interface GameActions {
@@ -28,6 +29,7 @@ interface GameActions {
   requestRematch: () => void;
   resetAll: () => void;
   emitSelecting: (digits: number[]) => void;
+  guessAcknowledged: boolean;
 }
 
 const initialState: GameState = {
@@ -45,6 +47,7 @@ const initialState: GameState = {
   error: null,
   rematchRequested: false,
   opponentSelecting: [],
+  guessAcknowledged: true,
 };
 
 const GameContext = createContext<(GameState & GameActions) | null>(null);
@@ -102,7 +105,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
     };
 
     const onError = (message: string) => {
-      setState(prev => ({ ...prev, error: message }));
+      setState(prev => ({ ...prev, error: message, guessAcknowledged: true }));
       setTimeout(() => setState(prev => ({ ...prev, error: null })), 3000);
     };
 
@@ -123,6 +126,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
         ...prev,
         myGuesses: [...prev.myGuesses, entry],
         currentTurn: entry.turn,
+        guessAcknowledged: true,
       }));
     };
 
@@ -224,6 +228,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
 
   const makeGuess = useCallback((guess: number[]) => {
     if (!socket) return;
+    setState(prev => ({ ...prev, guessAcknowledged: false }));
     socket.emit('game:guess', guess);
   }, [socket]);
 
@@ -252,6 +257,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
     requestRematch,
     resetAll,
     emitSelecting,
+    guessAcknowledged: state.guessAcknowledged,
   };
 
   return (

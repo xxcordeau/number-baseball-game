@@ -29,6 +29,7 @@ import {
   SecretDigits,
   OpponentSelectingBar,
   OpponentDigit,
+  ErrorMsg,
 } from './styles';
 
 export default function GamePage() {
@@ -46,6 +47,8 @@ export default function GamePage() {
     makeGuess,
     emitSelecting,
     opponentSelecting,
+    guessAcknowledged,
+    error,
   } = useGame();
 
   const [digits, setDigits] = useState<number[]>([]);
@@ -94,11 +97,17 @@ export default function GamePage() {
   };
 
   const handleConfirmGuess = () => {
-    if (digits.length === 3) {
+    if (digits.length === 3 && guessAcknowledged) {
       makeGuess(digits);
-      setDigits([]);
     }
   };
+
+  // Clear digits only after server acknowledges the guess
+  useEffect(() => {
+    if (guessAcknowledged && myGuesses.length > 0) {
+      setDigits([]);
+    }
+  }, [guessAcknowledged, myGuesses.length]);
 
   const lastResult = myGuesses.length > 0 ? myGuesses[myGuesses.length - 1].result : null;
   const currentMood: Mood = lastResult ? getMoodFromResult(lastResult) : 'neutral';
@@ -192,6 +201,7 @@ export default function GamePage() {
                 onDelete={handleDelete}
                 onConfirm={handleConfirmGuess}
               />
+              {error && <ErrorMsg>{error}</ErrorMsg>}
             </>
           )}
         </GameColumn>

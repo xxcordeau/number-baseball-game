@@ -220,3 +220,14 @@ export const OpponentDigit = styled.span<{ $filled: boolean }>`
   border-radius: ${p => p.theme.radii.md};
   transition: all 0.2s ease;
 `;
+
+export const ErrorMsg = styled.p`
+  color: ${p => p.theme.colors.pink};
+  font-size: 13px;
+  font-weight: ${p => p.theme.fontWeights.extrabold};
+  text-align: center;
+  margin-top: 8px;
+  padding: 6px 12px;
+  background: #FFF0F3;
+  border-radius: ${p => p.theme.radii.full};
+`;

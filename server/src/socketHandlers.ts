@@ -66,10 +66,20 @@ export function registerSocketHandlers(
 
     socket.on('game:guess', (guess: number[]) => {
       const room = roomManager.getRoomByPlayer(socket.id);
-      if (!room) return;
+      if (!room) {
+        console.log(`[guess] room not found for ${socket.id}`);
+        socket.emit('room:error', '연결이 끊어졌습니다. 새로고침 해주세요.');
+        return;
+      }
 
       const result = roomManager.makeGuess(room.code, socket.id, guess);
-      if (!result) return;
+      if (!result) {
+        const activePlayer = room.players[room.activePlayerIndex];
+        console.log(`[guess] rejected: socketId=${socket.id}, active=${activePlayer?.id}, phase=${room.phase}, guess=${guess}`);
+        socket.emit('room:error', '추측할 수 없습니다.');
+        return;
+      }
+      console.log(`[guess] ${socket.id} guessed ${guess} => ${result.result.strike}S ${result.result.ball}B`);
 
       socket.emit('game:guess-result', result.entry);
 
