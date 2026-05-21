@@ -31,7 +31,7 @@ export const theme = {
     soft: '0 8px 32px rgba(0,0,0,0.06)',
   },
   fonts: {
-    primary: "'Nunito', sans-serif",
+    primary: "'Poppins', sans-serif",
   },
   fontWeights: {
     semibold: 600,
