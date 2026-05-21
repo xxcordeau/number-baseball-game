@@ -221,6 +221,37 @@ export const OpponentDigit = styled.span<{ $filled: boolean }>`
   transition: all 0.2s ease;
 `;
 
+export const RuleHint = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 14px;
+  background: ${p => p.theme.colors.surface};
+  border-radius: ${p => p.theme.radii.lg};
+  border: 2px dashed ${p => p.theme.colors.border};
+  margin-bottom: 16px;
+`;
+
+export const RuleLine = styled.span`
+  font-size: 11px;
+  font-weight: ${p => p.theme.fontWeights.bold};
+  color: ${p => p.theme.colors.textMuted};
+  display: flex;
+  align-items: center;
+  gap: 6px;
+`;
+
+export const RuleBadge = styled.span<{ $color: string }>`
+  display: inline-block;
+  font-size: 10px;
+  font-weight: ${p => p.theme.fontWeights.black};
+  color: #fff;
+  background: ${p => p.$color};
+  padding: 1px 6px;
+  border-radius: ${p => p.theme.radii.full};
+`;
+
 export const ErrorMsg = styled.p`
   color: ${p => p.theme.colors.pink};
   font-size: 13px;
