@@ -234,6 +234,7 @@ export const RuleHint = styled.div`
   border-radius: ${p => p.theme.radii.lg};
   border: 1.5px dashed ${p => p.theme.colors.border};
   margin-bottom: 16px;
+  align-self: flex-start;
 `;
 
 export const RuleLine = styled.span`

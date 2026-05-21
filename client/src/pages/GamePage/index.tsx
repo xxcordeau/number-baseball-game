@@ -162,6 +162,11 @@ export default function GamePage() {
     return (
       <PlayingLayout>
         <GameColumn>
+          <RuleHint>
+            <RuleLine><RuleBadge $color="#FF6633">S</RuleBadge> 스트라이크 — 숫자와 자리 모두 맞음</RuleLine>
+            <RuleLine><RuleBadge $color="#1A75FF">B</RuleBadge> 볼 — 숫자는 맞지만 자리가 다름</RuleLine>
+            <RuleLine><RuleBadge $color="#FFA830">OUT</RuleBadge> 아웃 — 맞는 숫자가 하나도 없음</RuleLine>
+          </RuleHint>
           <Header>
             <OpponentInfo>vs {opponent?.nickname ?? '???'}</OpponentInfo>
             <TurnInfo>{currentTurn}/{maxTurns}</TurnInfo>
@@ -225,11 +230,6 @@ export default function GamePage() {
         </GameColumn>
 
         <HistoryColumn>
-          <RuleHint>
-            <RuleLine><RuleBadge $color="#FF6633">S</RuleBadge> 스트라이크 — 숫자와 자리 모두 맞음</RuleLine>
-            <RuleLine><RuleBadge $color="#1A75FF">B</RuleBadge> 볼 — 숫자는 맞지만 자리가 다름</RuleLine>
-            <RuleLine><RuleBadge $color="#FFA830">OUT</RuleBadge> 아웃 — 맞는 숫자가 하나도 없음</RuleLine>
-          </RuleHint>
           <GuessHistory guesses={myGuesses} />
         </HistoryColumn>
       </PlayingLayout>
