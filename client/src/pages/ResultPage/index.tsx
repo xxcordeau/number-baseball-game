@@ -73,17 +73,10 @@ export default function ResultPage() {
       </SummaryRow>
 
       <ButtonRow>
-        <Button fullWidth onClick={requestRematch} disabled={rematchRequested}>
-          {rematchRequested ? '대기 중...' : '다시 하기'}
-        </Button>
-        <Button variant="secondary" fullWidth onClick={handleLeave}>
+        <Button fullWidth onClick={handleLeave}>
           나가기
         </Button>
       </ButtonRow>
-
-      {rematchRequested && (
-        <RematchLabel>상대방의 응답을 기다리는 중...</RematchLabel>
-      )}
     </Container>
   );
 }
