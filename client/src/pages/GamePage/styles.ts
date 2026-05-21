@@ -26,7 +26,7 @@ export const PlayingLayout = styled.div`
   display: flex;
   min-height: 100vh;
   width: 100%;
-  max-width: 820px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 32px 20px;
   gap: 24px;
@@ -37,6 +37,20 @@ export const PlayingLayout = styled.div`
     max-width: 400px;
     align-items: center;
     justify-content: center;
+  }
+`;
+
+export const RuleColumn = styled.div`
+  width: 160px;
+  flex-shrink: 0;
+  padding-top: 8px;
+  position: sticky;
+  top: 32px;
+  align-self: flex-start;
+
+  @media (max-width: 700px) {
+    width: 100%;
+    position: static;
   }
 `;
 
@@ -229,12 +243,10 @@ export const RuleHint = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
-  padding: 10px 14px;
+  padding: 10px 12px;
   background: ${p => p.theme.colors.surface};
   border-radius: ${p => p.theme.radii.lg};
   border: 1.5px dashed ${p => p.theme.colors.border};
-  margin-bottom: 16px;
-  align-self: flex-start;
 `;
 
 export const RuleLine = styled.span`

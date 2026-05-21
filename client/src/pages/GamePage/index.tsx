@@ -12,6 +12,7 @@ import { Mood } from '../../types/game';
 import {
   Container,
   PlayingLayout,
+  RuleColumn,
   GameColumn,
   HistoryColumn,
   Header,
@@ -161,12 +162,14 @@ export default function GamePage() {
   if (phase === 'PLAYING') {
     return (
       <PlayingLayout>
-        <GameColumn>
+        <RuleColumn>
           <RuleHint>
             <RuleLine><RuleBadge $color="#FF6633">S</RuleBadge> 스트라이크 — 숫자와 자리 모두 맞음</RuleLine>
             <RuleLine><RuleBadge $color="#1A75FF">B</RuleBadge> 볼 — 숫자는 맞지만 자리가 다름</RuleLine>
             <RuleLine><RuleBadge $color="#FFA830">OUT</RuleBadge> 아웃 — 맞는 숫자가 하나도 없음</RuleLine>
           </RuleHint>
+        </RuleColumn>
+        <GameColumn>
           <Header>
             <OpponentInfo>vs {opponent?.nickname ?? '???'}</OpponentInfo>
             <TurnInfo>{currentTurn}/{maxTurns}</TurnInfo>
